@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="quanlysinhvien"
+           name="pojo.TkbLop" table="tkblop">
+        <composite-id>
+            <key-property name="MaMon">
+                <column name="MaMon" length="10"/>
+            </key-property>
+            <key-property name="MaLop">
+                <column name="MaLop" length="5"/>
+            </key-property>
+        </composite-id>
+        <property name="STT" type="int">
+            <column name="STT"/>
+        </property>
+        <property name="PhongHoc" type="string">
+            <column name="PhongHoc" length="4"/>
+        </property>
+    </class>
+</hibernate-mapping>

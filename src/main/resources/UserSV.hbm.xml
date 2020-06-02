@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="quanlysinhvien"
+           name="pojo.UserSV" table="usersv">
+        <id name="MSSV" type="string">
+            <column name="MSSV" length="7"/>
+        </id>
+        <property name="Password" type="string">
+            <column name="Password" length="45"/>
+        </property>
+    </class>
+</hibernate-mapping>

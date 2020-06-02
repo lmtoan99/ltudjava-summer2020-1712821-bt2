@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="quanlysinhvien"
+           name="pojo.MonHoc" table="monhoc">
+        <id name="MaMon" type="string">
+            <column name="MaMon" length="10"/>
+        </id>
+        <property name="TenMon" type="string">
+            <column name="TenMon" length="45"/>
+        </property>
+    </class>
+</hibernate-mapping>
