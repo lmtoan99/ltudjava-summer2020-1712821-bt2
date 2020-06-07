@@ -22,6 +22,10 @@ public class UserSVDAO {
         } finally {
             session.close();
         }
-        return sv.get(0);
+        if (sv.isEmpty()){
+            return null;
+        }else{
+            return sv.get(0);
+        }
     }
 }
