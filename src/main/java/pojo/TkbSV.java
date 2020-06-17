@@ -3,7 +3,6 @@ package pojo;
 import java.io.Serializable;
 
 public class TkbSV implements Serializable {
-    private int STT;
     private String MSSV;
     private String MaMon;
     private String MaLop;
@@ -13,10 +12,13 @@ public class TkbSV implements Serializable {
     private float DiemTong;
 
     public TkbSV() {
+        this.DiemCK = 0;
+        this.DiemGK = 0;
+        this.DiemKhac = 0;
+        this.DiemTong = 0;
     }
 
-    public TkbSV(int STT, String MSSV, String maLop, String maMon, float diemGK, float diemCK, float diemKhac, float diemTong) {
-        this.STT = STT;
+    public TkbSV(String MSSV, String maLop, String maMon, float diemGK, float diemCK, float diemKhac, float diemTong) {
         this.MSSV = MSSV;
         MaMon = maMon;
         MaLop = maLop;
@@ -26,14 +28,17 @@ public class TkbSV implements Serializable {
         DiemTong = diemTong;
     }
 
-    public int getSTT() {
-        return STT;
+    public TkbSV(String MSSV, String MaMon, String MaLop) {
+        this.MSSV = MSSV;
+        this.MaMon = MaMon;
+        this.MaLop = MaLop;
+        this.DiemCK = 0;
+        this.DiemGK = 0;
+        this.DiemKhac = 0;
+        this.DiemTong = 0;
     }
 
-    public void setSTT(int STT) {
-        this.STT = STT;
-    }
-
+    
     public String getMSSV() {
         return MSSV;
     }
@@ -93,8 +98,7 @@ public class TkbSV implements Serializable {
     @Override
     public String toString() {
         return "TkbSV{" +
-                "STT=" + STT +
-                ", MSSV='" + MSSV + '\'' +
+                "MSSV='" + MSSV + '\'' +
                 ", MaMon='" + MaMon + '\'' +
                 ", MaLop='" + MaLop + '\'' +
                 '}';

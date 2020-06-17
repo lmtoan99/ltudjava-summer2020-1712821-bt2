@@ -5,7 +5,10 @@
  */
 package view;
 
+import DAO.MonHocDAO;
 import DAO.SinhVienDAO;
+import DAO.TkbLopDAO;
+import DAO.TkbSVDAO;
 import DAO.UserSVDAO;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +25,10 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import pojo.MonHoc;
 import pojo.SinhVien;
+import pojo.TkbLop;
+import pojo.TkbSV;
 import pojo.UserSV;
 
 /**
@@ -38,6 +44,8 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         initComponents();
         importDsLopPanel.setVisible(false);
         xemDsLopPanel.setVisible(false);
+        importTkbPanel.setVisible(false);
+        xemTkbPanel.setVisible(false);
     }
 
     /**
@@ -54,6 +62,16 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         chooseFileBtn = new javax.swing.JButton();
         fileNameLabel = new javax.swing.JLabel();
         importDsLopSubmit = new javax.swing.JButton();
+        importTkbPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        chooseFileTkb = new javax.swing.JButton();
+        fileNameTkb = new javax.swing.JLabel();
+        importTkbSubmit = new javax.swing.JButton();
+        xemTkbPanel = new javax.swing.JPanel();
+        TkbComboBox = new javax.swing.JComboBox<>();
+        xemTkbBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TkbTable = new javax.swing.JTable();
         xemDsLopPanel = new javax.swing.JPanel();
         DsLopComboBox = new javax.swing.JComboBox<>();
         xemDsLopSubmit = new javax.swing.JButton();
@@ -133,6 +151,114 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Import thời khóa biểu");
+
+        chooseFileTkb.setText("Chọn file");
+        chooseFileTkb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseFileTkbActionPerformed(evt);
+            }
+        });
+
+        importTkbSubmit.setText("Import");
+        importTkbSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importTkbSubmitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout importTkbPanelLayout = new javax.swing.GroupLayout(importTkbPanel);
+        importTkbPanel.setLayout(importTkbPanelLayout);
+        importTkbPanelLayout.setHorizontalGroup(
+            importTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importTkbPanelLayout.createSequentialGroup()
+                .addGroup(importTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(importTkbPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(importTkbPanelLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(chooseFileTkb, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(fileNameTkb, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(importTkbPanelLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(importTkbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        importTkbPanelLayout.setVerticalGroup(
+            importTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importTkbPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(importTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chooseFileTkb, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(fileNameTkb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(importTkbSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
+        xemTkbBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        xemTkbBtn.setText("Xem");
+        xemTkbBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xemTkbBtnActionPerformed(evt);
+            }
+        });
+
+        TkbTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã môn", "Tên môn", "Phòng học"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(TkbTable);
+
+        javax.swing.GroupLayout xemTkbPanelLayout = new javax.swing.GroupLayout(xemTkbPanel);
+        xemTkbPanel.setLayout(xemTkbPanelLayout);
+        xemTkbPanelLayout.setHorizontalGroup(
+            xemTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(xemTkbPanelLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(TkbComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(xemTkbBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(205, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
+        );
+        xemTkbPanelLayout.setVerticalGroup(
+            xemTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(xemTkbPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(xemTkbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TkbComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(xemTkbBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         xemDsLopSubmit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         xemDsLopSubmit.setText("Xem");
         xemDsLopSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -165,31 +291,30 @@ public class MenuGiaoVu extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(dsLopTable);
+        if (dsLopTable.getColumnModel().getColumnCount() > 0) {
+            dsLopTable.getColumnModel().getColumn(1).setHeaderValue("MSSV");
+        }
 
         javax.swing.GroupLayout xemDsLopPanelLayout = new javax.swing.GroupLayout(xemDsLopPanel);
         xemDsLopPanel.setLayout(xemDsLopPanelLayout);
         xemDsLopPanelLayout.setHorizontalGroup(
             xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(xemDsLopPanelLayout.createSequentialGroup()
-                .addGroup(xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(xemDsLopPanelLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(DsLopComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(xemDsLopSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(xemDsLopPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(166, 166, 166)
+                .addComponent(DsLopComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(xemDsLopSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(240, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         xemDsLopPanelLayout.setVerticalGroup(
             xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(xemDsLopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(xemDsLopSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGroup(xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(xemDsLopSubmit)
                     .addComponent(DsLopComboBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -237,9 +362,19 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         tkbBtn.setText("Thời khóa biểu");
 
         tkbBtn_import.setText("Import thời khóa biểu");
+        tkbBtn_import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tkbBtn_importActionPerformed(evt);
+            }
+        });
         tkbBtn.add(tkbBtn_import);
 
         tkbBtn_view.setText("Xem lại thời khóa biểu");
+        tkbBtn_view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tkbBtn_viewActionPerformed(evt);
+            }
+        });
         tkbBtn.add(tkbBtn_view);
 
         jMenuBar1.add(tkbBtn);
@@ -282,16 +417,36 @@ public class MenuGiaoVu extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(importTkbPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(xemTkbPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(xemDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGap(0, 926, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(importDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(importTkbPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(xemTkbPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -321,6 +476,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         xemDsLopPanel.setVisible(true);
         current_panel = xemDsLopPanel;
         List<String> dsLop = SinhVienDAO.layDanhSachLop();
+        DsLopComboBox.removeAllItems();
         dsLop.forEach(item -> {
             DsLopComboBox.addItem(item);
         });
@@ -387,6 +543,98 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_xemDsLopSubmitActionPerformed
 
+    private void chooseFileTkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileTkbActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter csvFilter = new FileNameExtensionFilter("csv","csv");
+        fileChooser.setFileFilter(csvFilter);
+        fileChooser.setMultiSelectionEnabled(false);
+            
+        int x = fileChooser.showDialog(this, "Chọn file");
+        if (x==fileChooser.APPROVE_OPTION){
+            file = fileChooser.getSelectedFile();
+            fileNameTkb.setText(file.getName());
+        }
+    }//GEN-LAST:event_chooseFileTkbActionPerformed
+
+    private void importTkbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importTkbSubmitActionPerformed
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return;
+        }
+        String lop = "";
+        List<SinhVien> listSV = null;
+        while(true){
+            String line;
+            try {
+                line = bufferedReader.readLine();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return;
+            }
+            if (line == null){
+                return;
+            }
+            String[] arr = line.split(",");
+            if (arr.length==1){
+                lop = arr[0];
+                listSV = SinhVienDAO.layDanhSachSinhVienTheoLop(lop);
+            }else{
+                MonHoc mon = new MonHoc(arr[1],arr[2]);
+                MonHocDAO.luuMonHoc(mon);
+              
+                TkbLop tkb = new TkbLop(Integer.valueOf(arr[0]),
+                arr[1],lop,arr[3]);
+                System.out.println(tkb.toString());
+                TkbLopDAO.luuTkbLop(tkb);
+                final String temp_lop = lop;
+                listSV.forEach(sv -> {
+                    TkbSV tkb_sv = new TkbSV();
+                    tkb_sv.setMSSV(sv.getMSSV());
+                    tkb_sv.setMaMon(arr[1]);
+                    tkb_sv.setMaLop(temp_lop);
+                    TkbSVDAO.luuTkbSv(tkb_sv);
+                });
+                
+            }
+        }
+    }//GEN-LAST:event_importTkbSubmitActionPerformed
+
+    private void tkbBtn_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tkbBtn_importActionPerformed
+        if (current_panel != null){
+            current_panel.setVisible(false);
+        }
+        importTkbPanel.setVisible(true);
+        current_panel = importTkbPanel;
+    }//GEN-LAST:event_tkbBtn_importActionPerformed
+
+    private void tkbBtn_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tkbBtn_viewActionPerformed
+        if (current_panel != null){
+            current_panel.setVisible(false);
+        }
+        xemTkbPanel.setVisible(true);
+        current_panel = xemTkbPanel;
+        List<String> dsLop = SinhVienDAO.layDanhSachLop();
+        TkbComboBox.removeAllItems();
+        dsLop.forEach(item -> {
+            TkbComboBox.addItem(item);
+        });
+        
+    }//GEN-LAST:event_tkbBtn_viewActionPerformed
+
+    private void xemTkbBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xemTkbBtnActionPerformed
+        List<TkbLop> tkbLop = TkbLopDAO.layDanhSachTkbLopTheoLop((String)TkbComboBox.getSelectedItem());
+        DefaultTableModel model = (DefaultTableModel)TkbTable.getModel();
+        model.setNumRows(0);
+        tkbLop.forEach(tkb -> {
+            MonHoc mh = MonHocDAO.layMonHoc(tkb.getMaMon());
+            model.addRow(new Object[]{tkb.getSTT(), tkb.getMaMon(), mh.getTenMon()
+                    ,tkb.getPhongHoc()});
+        });
+    }//GEN-LAST:event_xemTkbBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,18 +676,25 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> DsLopComboBox;
+    private javax.swing.JComboBox<String> TkbComboBox;
+    private javax.swing.JTable TkbTable;
     private javax.swing.JMenuItem bangDiem_import;
     private javax.swing.JMenuItem bangDiem_view;
     private javax.swing.JMenu changePasswd;
     private javax.swing.JButton chooseFileBtn;
+    private javax.swing.JButton chooseFileTkb;
     private javax.swing.JMenu dsLopBtn;
     private javax.swing.JMenuItem dsLopBtn_import;
     private javax.swing.JMenuItem dsLopBtn_xem;
     private javax.swing.JTable dsLopTable;
     private javax.swing.JLabel fileNameLabel;
+    private javax.swing.JLabel fileNameTkb;
     private javax.swing.JPanel importDsLopPanel;
     private javax.swing.JButton importDsLopSubmit;
+    private javax.swing.JPanel importTkbPanel;
+    private javax.swing.JButton importTkbSubmit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -451,10 +706,13 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu tkbBtn;
     private javax.swing.JMenuItem tkbBtn_import;
     private javax.swing.JMenuItem tkbBtn_view;
     private javax.swing.JPanel xemDsLopPanel;
     private javax.swing.JButton xemDsLopSubmit;
+    private javax.swing.JButton xemTkbBtn;
+    private javax.swing.JPanel xemTkbPanel;
     // End of variables declaration//GEN-END:variables
 }

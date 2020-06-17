@@ -26,4 +26,12 @@ public class TkbSVDAO {
         }
         return tkb;
     }
+    
+    public static void luuTkbSv(TkbSV tkb){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(tkb);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

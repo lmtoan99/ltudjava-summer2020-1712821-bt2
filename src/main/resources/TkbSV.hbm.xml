@@ -15,9 +15,6 @@
                 <column name="MaLop" length="5"/>
             </key-property>
         </composite-id>
-        <property name="STT" type="int">
-            <column name="STT"/>
-        </property>
         <property name="DiemGK" type="float" not-null="false">
             <column name="DiemGK"/>
         </property>
