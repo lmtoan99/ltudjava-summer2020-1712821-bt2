@@ -8,7 +8,7 @@
             <column length="7" name="MSSV"/>
         </id>
         <property name="STT" type="int">
-            <column name="STT" not-null="true"/>
+            <column name="STT"/>
         </property>
         <property name="HoTen" type="string">
             <column length="45" name="HoTen" not-null="true"/>
@@ -19,8 +19,8 @@
         <property name="CMND" type="string">
             <column length="9" name="CMND" not-null="true" unique="true"/>
         </property>
-        <property name="Lop" type="string">
-            <column length="5" name="Lop"/>
+        <property name="MaLop" type="string">
+            <column length="5" name="MaLop"/>
         </property>
     </class>
 </hibernate-mapping>

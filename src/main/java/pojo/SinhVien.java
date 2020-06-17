@@ -6,18 +6,18 @@ public class SinhVien {
     private String HoTen;
     private int GioiTinh;
     private String CMND;
-    private String Lop;
+    private String MaLop;
 
     public SinhVien() {
     }
 
-    public SinhVien(int STT, String MSSV, String hoTen, int gioiTinh, String CMND, String lop) {
+    public SinhVien(int STT, String MSSV, String hoTen, int gioiTinh, String CMND, String maLop) {
         this.MSSV = MSSV;
         this.STT = STT;
         HoTen = hoTen;
         GioiTinh = gioiTinh;
         this.CMND = CMND;
-        Lop = lop;
+        MaLop = maLop;
     }
 
     public String getMSSV() {
@@ -60,23 +60,17 @@ public class SinhVien {
         this.CMND = CMND;
     }
 
-    public String getLop() {
-        return Lop;
+    public String getMaLop() {
+        return MaLop;
     }
 
-    public void setLop(String lop) {
-        Lop = lop;
+    public void setMaLop(String lop) {
+        MaLop = lop;
     }
 
     @Override
     public String toString() {
-        return "SinhVien{" +
-                "MSSV='" + MSSV + '\'' +
-                ", STT=" + STT +
-                ", HoTen='" + HoTen + '\'' +
-                ", GioiTinh=" + GioiTinh +
-                ", CMND='" + CMND + '\'' +
-                ", Lop='" + Lop + '\'' +
-                '}';
+        return STT + MSSV + "," + HoTen + ','+ GioiTinh +
+                "," + CMND + ',' + MaLop;
     }
 }

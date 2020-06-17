@@ -28,4 +28,12 @@ public class UserSVDAO {
             return sv.get(0);
         }
     }
+    
+    public static void luuUserSV(UserSV sv){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(sv);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

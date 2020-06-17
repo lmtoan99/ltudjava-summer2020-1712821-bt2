@@ -5,19 +5,39 @@
  */
 package view;
 
+import DAO.SinhVienDAO;
+import DAO.UserSVDAO;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import pojo.SinhVien;
+import pojo.UserSV;
 
 /**
  *
  * @author toanm
  */
 public class MenuGiaoVu extends javax.swing.JFrame {
-
     /**
      * Creates new form MenuGiaoVu
      */
+    private JPanel current_panel = null;
     public MenuGiaoVu() {
         initComponents();
+        importDsLopPanel.setVisible(false);
+        xemDsLopPanel.setVisible(false);
     }
 
     /**
@@ -29,6 +49,16 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        importDsLopPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        chooseFileBtn = new javax.swing.JButton();
+        fileNameLabel = new javax.swing.JLabel();
+        importDsLopSubmit = new javax.swing.JButton();
+        xemDsLopPanel = new javax.swing.JPanel();
+        DsLopComboBox = new javax.swing.JComboBox<>();
+        xemDsLopSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dsLopTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         dsLopBtn = new javax.swing.JMenu();
         dsLopBtn_import = new javax.swing.JMenuItem();
@@ -50,8 +80,118 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         changePasswd = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1650, 1080));
         setSize(new java.awt.Dimension(400, 300));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Import danh sách lớp");
+
+        chooseFileBtn.setText("Chọn file");
+        chooseFileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseFileBtnActionPerformed(evt);
+            }
+        });
+
+        importDsLopSubmit.setText("Import");
+        importDsLopSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importDsLopSubmitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout importDsLopPanelLayout = new javax.swing.GroupLayout(importDsLopPanel);
+        importDsLopPanel.setLayout(importDsLopPanelLayout);
+        importDsLopPanelLayout.setHorizontalGroup(
+            importDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDsLopPanelLayout.createSequentialGroup()
+                .addGroup(importDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(importDsLopPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(importDsLopPanelLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(chooseFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(fileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(importDsLopPanelLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(importDsLopSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        importDsLopPanelLayout.setVerticalGroup(
+            importDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDsLopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(importDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chooseFileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(fileNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(importDsLopSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
+        xemDsLopSubmit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        xemDsLopSubmit.setText("Xem");
+        xemDsLopSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xemDsLopSubmitActionPerformed(evt);
+            }
+        });
+
+        dsLopTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "MSSV", "Họ tên", "Giới tính", "CMND"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(dsLopTable);
+
+        javax.swing.GroupLayout xemDsLopPanelLayout = new javax.swing.GroupLayout(xemDsLopPanel);
+        xemDsLopPanel.setLayout(xemDsLopPanelLayout);
+        xemDsLopPanelLayout.setHorizontalGroup(
+            xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(xemDsLopPanelLayout.createSequentialGroup()
+                .addGroup(xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(xemDsLopPanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(DsLopComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(xemDsLopSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(xemDsLopPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        xemDsLopPanelLayout.setVerticalGroup(
+            xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(xemDsLopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(xemDsLopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(xemDsLopSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(DsLopComboBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         dsLopBtn.setText("Danh sách lớp");
 
@@ -133,27 +273,119 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 977, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(importDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(xemDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(importDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(xemDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        importDsLopPanel.getAccessibleContext().setAccessibleName("");
+        importDsLopPanel.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void dsLopBtn_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsLopBtn_importActionPerformed
-        // TODO add your handling code here:
+        if (current_panel != null){
+            current_panel.setVisible(false);
+        }
+        importDsLopPanel.setVisible(true);
+        current_panel = importDsLopPanel;
     }//GEN-LAST:event_dsLopBtn_importActionPerformed
 
     private void dsLopBtn_xemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsLopBtn_xemActionPerformed
-        // TODO add your handling code here:
+        if (current_panel != null){
+            current_panel.setVisible(false);
+        }
+        xemDsLopPanel.setVisible(true);
+        current_panel = xemDsLopPanel;
+        List<String> dsLop = SinhVienDAO.layDanhSachLop();
+        dsLop.forEach(item -> {
+            DsLopComboBox.addItem(item);
+        });
     }//GEN-LAST:event_dsLopBtn_xemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void chooseFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileBtnActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter csvFilter = new FileNameExtensionFilter("csv","csv");
+        fileChooser.setFileFilter(csvFilter);
+        fileChooser.setMultiSelectionEnabled(false);
+            
+        int x = fileChooser.showDialog(this, "Chọn file");
+        if (x==fileChooser.APPROVE_OPTION){
+            file = fileChooser.getSelectedFile();
+            fileNameLabel.setText(file.getName());
+        }
+    }//GEN-LAST:event_chooseFileBtnActionPerformed
+
+    private void importDsLopSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importDsLopSubmitActionPerformed
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return;
+        }
+        String lop = "";
+        while(true){
+            String line;
+            try {
+                line = bufferedReader.readLine();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return;
+            }
+            if (line == null){
+                return;
+            }
+            String[] arr = line.split(",");
+            if (arr.length==1){
+                lop = arr[0];
+            }else{
+                SinhVien sv = new SinhVien(Integer.valueOf(arr[0]),
+                arr[1],arr[2],arr[3].equals("Nam")?1:0,arr[4],lop);
+                System.out.println(sv.toString());
+                SinhVienDAO.luuSinhVien(sv);
+                UserSV user = new UserSV(arr[1],arr[1]);
+                UserSVDAO.luuUserSV(user);
+            }
+        }
+    }//GEN-LAST:event_importDsLopSubmitActionPerformed
+
+    private void xemDsLopSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xemDsLopSubmitActionPerformed
+        List<SinhVien> dsLop = SinhVienDAO.layDanhSachSinhVienTheoLop((String)DsLopComboBox.getSelectedItem());
+        DefaultTableModel model = (DefaultTableModel)dsLopTable.getModel();
+        model.setNumRows(0);
+        dsLop.forEach(sv -> {
+            model.addRow(new Object[]{sv.getSTT(), sv.getMSSV(), sv.getHoTen()
+                    ,sv.getGioiTinh()==1?"Nam":"Nữ", sv.getCMND()});
+        });
+    }//GEN-LAST:event_xemDsLopSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,13 +424,22 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         });
     }
 
+    private File file = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> DsLopComboBox;
     private javax.swing.JMenuItem bangDiem_import;
     private javax.swing.JMenuItem bangDiem_view;
     private javax.swing.JMenu changePasswd;
+    private javax.swing.JButton chooseFileBtn;
     private javax.swing.JMenu dsLopBtn;
     private javax.swing.JMenuItem dsLopBtn_import;
     private javax.swing.JMenuItem dsLopBtn_xem;
+    private javax.swing.JTable dsLopTable;
+    private javax.swing.JLabel fileNameLabel;
+    private javax.swing.JPanel importDsLopPanel;
+    private javax.swing.JButton importDsLopSubmit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -209,8 +450,11 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu tkbBtn;
     private javax.swing.JMenuItem tkbBtn_import;
     private javax.swing.JMenuItem tkbBtn_view;
+    private javax.swing.JPanel xemDsLopPanel;
+    private javax.swing.JButton xemDsLopSubmit;
     // End of variables declaration//GEN-END:variables
 }
