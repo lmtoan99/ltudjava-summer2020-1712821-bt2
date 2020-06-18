@@ -187,14 +187,14 @@ public class LoginFrame extends javax.swing.JFrame {
             if (!gv.getPassword().equals(passwordStr)) {
                 JOptionPane.showMessageDialog(null, "Sai tài khoản hoặc mật khẩu");
             } else {
-                MenuGiaoVu.main(null);
+                MenuGiaoVu.main(new String[]{usernameStr});
                 dispose();
             }
         } else {
             if (!sv.getPassword().equals(passwordStr)) {
                 JOptionPane.showMessageDialog(null, "Sai tài khoản hoặc mật khẩu");
             } else {
-                MenuSinhVien.main(null);
+                MenuSinhVien.main(new String[]{usernameStr});
                 dispose();
             }
         }

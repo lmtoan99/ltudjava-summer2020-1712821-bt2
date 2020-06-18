@@ -63,4 +63,24 @@ public class SinhVienDAO {
         }
         return ds;
     }
+    
+    public static SinhVien layThongTinSinhVien(String mssv){
+        List<SinhVien> ds = null;
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "select sv from SinhVien sv where MSSV=:mssv";
+            Query query = session.createQuery(hql);
+            query.setParameter("mssv", mssv);
+            ds = query.list();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        if (ds.size()==0){
+            return null;
+        }
+        return ds.get(0);
+    }
 }

@@ -1,5 +1,6 @@
 package DAO;
 
+import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
@@ -8,6 +9,7 @@ import pojo.TkbLop;
 import until.HibernateUtil;
 
 import java.util.List;
+import model.LopMon;
 
 public class TkbLopDAO {
     public static List<TkbLop> layDanhSachTkbLop(){
@@ -41,6 +43,7 @@ public class TkbLopDAO {
         }
         return tkb;
     }
+    
     public static void luuTkbLop(TkbLop tkb){
         if (tonTaiTkbLop(tkb)){
             return;
@@ -72,5 +75,22 @@ public class TkbLopDAO {
             session.close();
         }
         return true;
+    }
+    
+    public static List<TkbLop> layDanhSachMonHocLop(){
+        List<TkbLop> ds = null;
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "select distinct new TkbLop(tkb.MaLop,tkb.MaMon) from TkbLop tkb";
+            Query query = session.createQuery(hql);
+            ds = query.list();
+            System.out.println(ds);
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return ds;
     }
 }

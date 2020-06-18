@@ -11,6 +11,11 @@ public class TkbLop implements Serializable {
     public TkbLop() {
     }
 
+    public TkbLop(String MaLop, String MaMon) {
+        this.MaLop = MaLop;
+        this.MaMon = MaMon;
+    }
+
     public TkbLop(int STT, String maMon, String maLop, String phongHoc) {
         this.STT = STT;
         MaLop = maLop;
