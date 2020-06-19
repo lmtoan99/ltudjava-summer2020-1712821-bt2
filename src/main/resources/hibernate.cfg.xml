@@ -21,6 +21,7 @@
         <mapping resource="MonHoc.hbm.xml"/>
         <mapping resource="TkbLop.hbm.xml"/>
         <mapping resource="TkbSV.hbm.xml"/>
-
+        <mapping resource="DonPhucKhao.hbm.xml"/>
+        <mapping resource="DotPhucKhao.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

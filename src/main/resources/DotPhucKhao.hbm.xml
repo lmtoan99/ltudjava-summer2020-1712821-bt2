@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="quanlysinhvien"
+           name="pojo.DotPhucKhao" table="dotphuckhao">
+        <composite-id>
+            <key-property name="ngayBatDau">
+                <column name="ngayBatDau"/>
+            </key-property>
+            <key-property name="ngayKetThuc">
+                <column name="ngayKetThuc"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
