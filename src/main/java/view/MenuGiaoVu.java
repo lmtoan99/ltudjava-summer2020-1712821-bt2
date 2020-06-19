@@ -26,7 +26,6 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import model.LopMon;
 import pojo.MonHoc;
 import pojo.SinhVien;
 import pojo.TkbLop;
@@ -94,16 +93,19 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         fileNameBangDiem = new javax.swing.JLabel();
         importBangDiemSubmit = new javax.swing.JButton();
         notify_importDiem = new javax.swing.JLabel();
-        xemBangDiemPanel = new javax.swing.JPanel();
-        bangDiemComboBox = new javax.swing.JComboBox<>();
-        bangDiemBtn = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        bangDiemTable = new javax.swing.JTable();
         xemDsLopPanel = new javax.swing.JPanel();
         DsLopComboBox = new javax.swing.JComboBox<>();
         xemDsLopSubmit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         dsLopTable = new javax.swing.JTable();
+        xemBangDiemPanel = new javax.swing.JPanel();
+        bangDiemComboBox = new javax.swing.JComboBox<>();
+        bangDiemBtn = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        bangDiemTable = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        thongKeTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         dsLopBtn = new javax.swing.JMenu();
         dsLopBtn_import = new javax.swing.JMenuItem();
@@ -427,66 +429,6 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        bangDiemBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        bangDiemBtn.setText("Xem");
-        bangDiemBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bangDiemBtnActionPerformed(evt);
-            }
-        });
-
-        bangDiemTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(bangDiemTable);
-
-        javax.swing.GroupLayout xemBangDiemPanelLayout = new javax.swing.GroupLayout(xemBangDiemPanel);
-        xemBangDiemPanel.setLayout(xemBangDiemPanelLayout);
-        xemBangDiemPanelLayout.setHorizontalGroup(
-            xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(bangDiemComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(bangDiemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
-            .addComponent(jScrollPane3)
-        );
-        xemBangDiemPanelLayout.setVerticalGroup(
-            xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bangDiemComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(bangDiemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(400, 300));
-
         xemDsLopSubmit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         xemDsLopSubmit.setText("Xem");
         xemDsLopSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -544,6 +486,119 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                     .addComponent(DsLopComboBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(400, 300));
+
+        bangDiemComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bangDiemComboBoxActionPerformed(evt);
+            }
+        });
+
+        bangDiemBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bangDiemBtn.setText("Xem");
+        bangDiemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bangDiemBtnActionPerformed(evt);
+            }
+        });
+
+        bangDiemTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(bangDiemTable);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Thống kê");
+
+        thongKeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Số lượng đậu", "Số lượng rớt", "Tỉ lệ đậu", "Tỉ lệ rớt"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(thongKeTable);
+
+        javax.swing.GroupLayout xemBangDiemPanelLayout = new javax.swing.GroupLayout(xemBangDiemPanel);
+        xemBangDiemPanel.setLayout(xemBangDiemPanelLayout);
+        xemBangDiemPanelLayout.setHorizontalGroup(
+            xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, xemBangDiemPanelLayout.createSequentialGroup()
+                .addGroup(xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bangDiemComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(bangDiemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)))
+                .addGroup(xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        xemBangDiemPanelLayout.setVerticalGroup(
+            xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bangDiemComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(bangDiemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(xemBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(xemBangDiemPanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(512, Short.MAX_VALUE))
         );
 
         dsLopBtn.setText("Danh sách lớp");
@@ -651,21 +706,17 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(xemDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(xemBangDiemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 926, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(xemDsLopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(xemBangDiemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -957,11 +1008,22 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         List<TkbSV> tkbSv = TkbSVDAO.layDanhSachTkbSVTheoLop(lopmon[0], lopmon[1]);
         DefaultTableModel model = (DefaultTableModel)bangDiemTable.getModel();
         model.setNumRows(0);
-        tkbSv.forEach(tkb -> {
+        int dau = 0, rot = 0;
+        for (int i = 0; i < tkbSv.size(); i++) {
+            TkbSV tkb = tkbSv.get(i);
             SinhVien sv = SinhVienDAO.layThongTinSinhVien(tkb.getMSSV());
             model.addRow(new Object[]{tkb.getMSSV(),sv.getHoTen(),tkb.getDiemGK(),
                 tkb.getDiemCK(),tkb.getDiemKhac(),tkb.getDiemTong()});
-        });
+            
+            if (tkb.getDiemTong() >= 5){
+                ++dau;
+            }
+        }
+        DefaultTableModel thongkeModel = (DefaultTableModel)thongKeTable.getModel();
+        thongkeModel.setNumRows(0);
+        int tiLeDau = (int)((dau+0.0)/tkbSv.size()*100);
+        int tiLeRot = 100 - tiLeDau;
+        thongkeModel.addRow(new Object[]{dau,tkbSv.size()-rot,tiLeDau+"%",tiLeRot + "%"});
     }//GEN-LAST:event_bangDiemBtnActionPerformed
 
     private void bangDiem_viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bangDiem_viewActionPerformed
@@ -976,6 +1038,10 @@ public class MenuGiaoVu extends javax.swing.JFrame {
             bangDiemComboBox.addItem(item.getMaLop() + "-" + item.getMaMon());
         });
     }//GEN-LAST:event_bangDiem_viewActionPerformed
+
+    private void bangDiemComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bangDiemComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bangDiemComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1056,6 +1122,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1069,10 +1136,12 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPasswordField newPasswd1;
     private javax.swing.JPasswordField newPasswd2;
     private javax.swing.JLabel notify_changePasswd;
     private javax.swing.JLabel notify_importDiem;
+    private javax.swing.JTable thongKeTable;
     private javax.swing.JMenu tkbBtn;
     private javax.swing.JMenuItem tkbBtn_import;
     private javax.swing.JMenuItem tkbBtn_view;

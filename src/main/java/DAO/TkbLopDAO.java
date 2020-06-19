@@ -9,7 +9,6 @@ import pojo.TkbLop;
 import until.HibernateUtil;
 
 import java.util.List;
-import model.LopMon;
 
 public class TkbLopDAO {
     public static List<TkbLop> layDanhSachTkbLop(){
