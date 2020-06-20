@@ -75,4 +75,21 @@ public class MonHocDAO {
         }
         return monHocs.get(0);
     }
+    
+    public static List<MonHoc> timMonHocTheoTen(String tenMon){
+        List<MonHoc> monHocs = null;
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "select monhoc from MonHoc monhoc where TenMon=:tenMon";
+            Query query = session.createQuery(hql);
+            query.setParameter("tenMon", tenMon);
+            monHocs = query.list();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return monHocs;
+    }
 }

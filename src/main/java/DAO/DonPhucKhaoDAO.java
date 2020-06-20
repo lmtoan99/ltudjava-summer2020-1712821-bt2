@@ -40,4 +40,12 @@ public class DonPhucKhaoDAO {
         session.getTransaction().commit();
         session.close();
     }
+    
+    public static void taoDonPhucKhao(DonPhucKhao don){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(don);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

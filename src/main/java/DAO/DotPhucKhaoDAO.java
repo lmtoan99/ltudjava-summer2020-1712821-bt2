@@ -22,7 +22,7 @@ public class DotPhucKhaoDAO {
         Session session = HibernateUtil.getSessionFactory()
                 .openSession();
         try {
-            String hql = "select monhoc from MonHoc monhoc";
+            String hql = "select dotphuckhao from DotPhucKhao dotphuckhao";
             Query query = session.createQuery(hql);
             phuckhao = query.list();
         } catch (HibernateException ex) {
@@ -37,10 +37,19 @@ public class DotPhucKhaoDAO {
     }
     
     public static void luuDotPhucKhao(DotPhucKhao dot){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(dot);
-        session.getTransaction().commit();
-        session.close();
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "delete from DotPhucKhao";
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+            session.beginTransaction();
+            session.save(dot);
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
     }
 }
