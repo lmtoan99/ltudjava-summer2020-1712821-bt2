@@ -36,6 +36,7 @@ public class MenuSinhVien extends javax.swing.JFrame {
         current_panel = helloPanel;
         xemDiemPanel.setVisible(false);
         phucKhaoPanel.setVisible(false);
+        changePasswdPanel.setVisible(false);
     }
 
     /**
@@ -76,7 +77,6 @@ public class MenuSinhVien extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         newPasswd2 = new javax.swing.JPasswordField();
         changePasswdSubmit = new javax.swing.JButton();
-        notify_changePasswd = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         xemDiem = new javax.swing.JMenu();
         phucKhao = new javax.swing.JMenu();
@@ -297,30 +297,24 @@ public class MenuSinhVien extends javax.swing.JFrame {
             changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(changePasswdPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswdPanelLayout.createSequentialGroup()
-                        .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(currentPasswd, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(newPasswd1)
-                            .addComponent(newPasswd2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswdPanelLayout.createSequentialGroup()
-                        .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(231, 231, 231))))
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(currentPasswd, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(newPasswd1)
+                    .addComponent(newPasswd2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 164, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 200, Short.MAX_VALUE))
+            .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         changePasswdPanelLayout.setVerticalGroup(
             changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,11 +333,9 @@ public class MenuSinhVien extends javax.swing.JFrame {
                 .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newPasswd2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(36, 36, 36)
                 .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         xemDiem.setText("Xem điểm");
@@ -402,6 +394,7 @@ public class MenuSinhVien extends javax.swing.JFrame {
     private void xemDiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xemDiemMouseClicked
         current_panel.setVisible(false);
         xemDiemPanel.setVisible(true);
+        current_panel = xemDiemPanel;
         DefaultTableModel model = (DefaultTableModel) xemDiemTable.getModel();
         model.setRowCount(0);
         List<TkbSV> ds = TkbSVDAO.layDanhSachTkbTheoSV(Username);
@@ -459,22 +452,26 @@ public class MenuSinhVien extends javax.swing.JFrame {
     private void changePasswdSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswdSubmitActionPerformed
         if (newPasswd1.getPassword().length == 0 || newPasswd2.getPassword().length ==0
             || currentPasswd.getPassword().length == 0){
-            notify_changePasswd.setText("Các trường không được để trống.");
+            JOptionPane.showMessageDialog(null,"Các trường không được để trống.");
             return;
         }
         if (String.valueOf(newPasswd1.getPassword()).equals (String.valueOf(newPasswd2.getPassword()))){
 
             UserSV user = UserSVDAO.findUserByMSSV(Username);
+            if (user==null){
+                System.out.println("null");
+                return;
+            }
             if (!(user.getPassword()).equals(String.valueOf(currentPasswd.getPassword()))){
-                notify_changePasswd.setText("Mật khẩu cũ không chính xác");
+                JOptionPane.showMessageDialog(null,"Mật khẩu cũ không chính xác");
                 return;
             }
 
             user.setPassword(String.valueOf(newPasswd1.getPassword()));
             UserSVDAO.updateUserSV(user);
-            notify_changePasswd.setText("Đổi mật khẩu thành công");
+            JOptionPane.showMessageDialog(null,"Đổi mật khẩu thành công");
         }else{
-            notify_changePasswd.setText("Mật khẩu mới phải giống nhau trùng nhau");
+            JOptionPane.showMessageDialog(null,"Mật khẩu mới phải giống nhau trùng nhau");
         }
     }//GEN-LAST:event_changePasswdSubmitActionPerformed
 
@@ -543,7 +540,6 @@ public class MenuSinhVien extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPasswordField newPasswd1;
     private javax.swing.JPasswordField newPasswd2;
-    private javax.swing.JLabel notify_changePasswd;
     private javax.swing.JMenu phucKhao;
     private javax.swing.JPanel phucKhaoForm;
     private javax.swing.JLabel phucKhaoNotify;

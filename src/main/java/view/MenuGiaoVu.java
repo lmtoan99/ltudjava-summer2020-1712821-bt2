@@ -105,7 +105,6 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         chooseFileBangDiem = new javax.swing.JButton();
         fileNameBangDiem = new javax.swing.JLabel();
         importBangDiemSubmit = new javax.swing.JButton();
-        notify_importDiem = new javax.swing.JLabel();
         xemTkbPanel = new javax.swing.JPanel();
         TkbComboBox = new javax.swing.JComboBox<>();
         xemTkbBtn = new javax.swing.JButton();
@@ -120,7 +119,6 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         newPasswd2 = new javax.swing.JPasswordField();
         changePasswdSubmit = new javax.swing.JButton();
-        notify_changePasswd = new javax.swing.JLabel();
         taoDotPhucKhaoPanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         ngayBatDauPicker = new org.jdesktop.swingx.JXDatePicker();
@@ -462,30 +460,24 @@ public class MenuGiaoVu extends javax.swing.JFrame {
             }
         });
 
-        notify_importDiem.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
         javax.swing.GroupLayout importBangDiemPanelLayout = new javax.swing.GroupLayout(importBangDiemPanel);
         importBangDiemPanel.setLayout(importBangDiemPanelLayout);
         importBangDiemPanelLayout.setHorizontalGroup(
             importBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(importBangDiemPanelLayout.createSequentialGroup()
                 .addGroup(importBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(importBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(importBangDiemPanelLayout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importBangDiemPanelLayout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addComponent(chooseFileBangDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(59, 59, 59)
-                            .addComponent(fileNameBangDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(importBangDiemPanelLayout.createSequentialGroup()
-                            .addGap(115, 115, 115)
-                            .addComponent(importBangDiemSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(importBangDiemPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importBangDiemPanelLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(notify_importDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(chooseFileBangDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(fileNameBangDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(importBangDiemPanelLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(importBangDiemSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         importBangDiemPanelLayout.setVerticalGroup(
             importBangDiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,9 +490,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                     .addComponent(fileNameBangDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(importBangDiemSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(notify_importDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         xemTkbBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -609,14 +599,9 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                         .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(231, 231, 231))))
             .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 164, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 200, Short.MAX_VALUE))
         );
         changePasswdPanelLayout.setVerticalGroup(
             changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,9 +620,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newPasswd2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(68, 68, 68)
                 .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(140, Short.MAX_VALUE))
         );
@@ -1640,22 +1623,22 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private void changePasswdSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswdSubmitActionPerformed
         if (newPasswd1.getPassword().length == 0 || newPasswd2.getPassword().length ==0 
                 || currentPasswd.getPassword().length == 0){
-            notify_changePasswd.setText("Các trường không được để trống.");
+            JOptionPane.showMessageDialog(null,"Các trường không được để trống.");
             return;
         }
         if (String.valueOf(newPasswd1.getPassword()).equals (String.valueOf(newPasswd2.getPassword()))){
             
             UserGiaoVu user = UserGiaoVuDAO.findUserByUsername(Username);
             if (!(user.getPassword()).equals(String.valueOf(currentPasswd.getPassword()))){
-                notify_changePasswd.setText("Mật khẩu cũ không chính xác");
+                JOptionPane.showMessageDialog(null,"Mật khẩu cũ không chính xác");
                 return;
             }
             
             user.setPassword(String.valueOf(newPasswd1.getPassword()));
             UserGiaoVuDAO.updateUserGiaoVu(user);
-            notify_changePasswd.setText("Đổi mật khẩu thành công");
+            JOptionPane.showMessageDialog(null,"Đổi mật khẩu thành công");
         }else{
-            notify_changePasswd.setText("Mật khẩu mới phải giống nhau trùng nhau");
+            JOptionPane.showMessageDialog(null,"Mật khẩu mới phải giống nhau trùng nhau");
         }
     }//GEN-LAST:event_changePasswdSubmitActionPerformed
 
@@ -1688,12 +1671,12 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 line = bufferedReader.readLine();
             } catch (IOException ex) {
                 ex.printStackTrace();
-                notify_importDiem.setText("Import điểm thất bại.");
+                JOptionPane.showMessageDialog(null,"Import điểm thất bại.");
                 return;
             }
             if (line == null){
                 file = null;
-                notify_importDiem.setText("Import điểm thành công.");
+                JOptionPane.showMessageDialog(null,"Import điểm thành công.");
                 return;
             }
             String[] arr = line.split(",");
@@ -2098,8 +2081,6 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     private javax.swing.JPasswordField newPasswd2;
     private org.jdesktop.swingx.JXDatePicker ngayBatDauPicker;
     private org.jdesktop.swingx.JXDatePicker ngayKetThucPicker;
-    private javax.swing.JLabel notify_changePasswd;
-    private javax.swing.JLabel notify_importDiem;
     private javax.swing.JComboBox<String> statusComboBox;
     private javax.swing.JButton suaDiemSV_Submit;
     private javax.swing.JComboBox<String> suaDiemSV_lop;

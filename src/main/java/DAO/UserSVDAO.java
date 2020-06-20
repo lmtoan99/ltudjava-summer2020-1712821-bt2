@@ -14,8 +14,9 @@ public class UserSVDAO {
         Session session = HibernateUtil.getSessionFactory()
                 .openSession();
         try {
-            String hql = "select user from UserSV user WHERE MSSV=\'"+mssv+"\'";
+            String hql = "select user from UserSV user WHERE MSSV=:mssv";
             Query query = session.createQuery(hql);
+            query.setParameter("mssv", mssv);
             sv = query.list();
         } catch (HibernateException ex) {
             System.err.println(ex);
