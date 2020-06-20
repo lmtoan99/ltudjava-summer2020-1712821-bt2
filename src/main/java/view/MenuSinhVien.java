@@ -9,6 +9,7 @@ import DAO.DonPhucKhaoDAO;
 import DAO.DotPhucKhaoDAO;
 import DAO.MonHocDAO;
 import DAO.TkbSVDAO;
+import DAO.UserSVDAO;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import pojo.DonPhucKhao;
 import pojo.DotPhucKhao;
 import pojo.MonHoc;
 import pojo.TkbSV;
+import pojo.UserSV;
 
 /**
  *
@@ -65,6 +67,16 @@ public class MenuSinhVien extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         phucKhao_LyDo = new javax.swing.JTextArea();
         phucKhao_submit = new javax.swing.JButton();
+        changePasswdPanel = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        currentPasswd = new javax.swing.JPasswordField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        newPasswd1 = new javax.swing.JPasswordField();
+        jLabel11 = new javax.swing.JLabel();
+        newPasswd2 = new javax.swing.JPasswordField();
+        changePasswdSubmit = new javax.swing.JButton();
+        notify_changePasswd = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         xemDiem = new javax.swing.JMenu();
         phucKhao = new javax.swing.JMenu();
@@ -258,6 +270,82 @@ public class MenuSinhVien extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Đổi mật khẩu");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Mật khẩu hiện tại");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Mật khẩu mới");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("Xác nhận mật khẩu mới");
+
+        changePasswdSubmit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        changePasswdSubmit.setText("Xác nhân");
+        changePasswdSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswdSubmitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout changePasswdPanelLayout = new javax.swing.GroupLayout(changePasswdPanel);
+        changePasswdPanel.setLayout(changePasswdPanelLayout);
+        changePasswdPanelLayout.setHorizontalGroup(
+            changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswdPanelLayout.createSequentialGroup()
+                        .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(currentPasswd, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(newPasswd1)
+                            .addComponent(newPasswd2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswdPanelLayout.createSequentialGroup()
+                        .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(231, 231, 231))))
+            .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 164, Short.MAX_VALUE))
+        );
+        changePasswdPanelLayout.setVerticalGroup(
+            changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswdPanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPasswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(changePasswdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPasswd2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(notify_changePasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(changePasswdSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
         xemDiem.setText("Xem điểm");
         xemDiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -275,6 +363,11 @@ public class MenuSinhVien extends javax.swing.JFrame {
         jMenuBar2.add(phucKhao);
 
         doiMK.setText("Đổi mật khẩu");
+        doiMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doiMKMouseClicked(evt);
+            }
+        });
         jMenuBar2.add(doiMK);
 
         dangXuat.setText("Đăng xuất");
@@ -287,10 +380,20 @@ public class MenuSinhVien extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 883, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(162, 162, 162)
+                    .addComponent(changePasswdPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(163, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 558, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(19, 19, 19)
+                    .addComponent(changePasswdPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(20, Short.MAX_VALUE)))
         );
 
         pack();
@@ -347,6 +450,34 @@ public class MenuSinhVien extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Tạo đơn phúc khảo thành công");
     }//GEN-LAST:event_phucKhao_submitActionPerformed
 
+    private void doiMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doiMKMouseClicked
+        current_panel.setVisible(false);
+        changePasswdPanel.setVisible(true);
+        current_panel = changePasswdPanel;
+    }//GEN-LAST:event_doiMKMouseClicked
+
+    private void changePasswdSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswdSubmitActionPerformed
+        if (newPasswd1.getPassword().length == 0 || newPasswd2.getPassword().length ==0
+            || currentPasswd.getPassword().length == 0){
+            notify_changePasswd.setText("Các trường không được để trống.");
+            return;
+        }
+        if (String.valueOf(newPasswd1.getPassword()).equals (String.valueOf(newPasswd2.getPassword()))){
+
+            UserSV user = UserSVDAO.findUserByMSSV(Username);
+            if (!(user.getPassword()).equals(String.valueOf(currentPasswd.getPassword()))){
+                notify_changePasswd.setText("Mật khẩu cũ không chính xác");
+                return;
+            }
+
+            user.setPassword(String.valueOf(newPasswd1.getPassword()));
+            UserSVDAO.updateUserSV(user);
+            notify_changePasswd.setText("Đổi mật khẩu thành công");
+        }else{
+            notify_changePasswd.setText("Mật khẩu mới phải giống nhau trùng nhau");
+        }
+    }//GEN-LAST:event_changePasswdSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -390,19 +521,29 @@ public class MenuSinhVien extends javax.swing.JFrame {
     private static String Username = "";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel changePasswdPanel;
+    private javax.swing.JButton changePasswdSubmit;
+    private javax.swing.JPasswordField currentPasswd;
     private javax.swing.JMenu dangXuat;
     private javax.swing.JMenu doiMK;
     private javax.swing.JPanel helloPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPasswordField newPasswd1;
+    private javax.swing.JPasswordField newPasswd2;
+    private javax.swing.JLabel notify_changePasswd;
     private javax.swing.JMenu phucKhao;
     private javax.swing.JPanel phucKhaoForm;
     private javax.swing.JLabel phucKhaoNotify;

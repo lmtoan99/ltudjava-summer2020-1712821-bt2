@@ -36,4 +36,12 @@ public class UserSVDAO {
         session.getTransaction().commit();
         session.close();
     }
+    
+    public static void updateUserSV(UserSV sv){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(sv);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
