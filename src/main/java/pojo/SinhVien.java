@@ -1,7 +1,6 @@
 package pojo;
 
 public class SinhVien {
-    private int STT;
     private String MSSV;
     private String HoTen;
     private int GioiTinh;
@@ -11,9 +10,8 @@ public class SinhVien {
     public SinhVien() {
     }
 
-    public SinhVien(int STT, String MSSV, String hoTen, int gioiTinh, String CMND, String maLop) {
+    public SinhVien(String MSSV, String hoTen, int gioiTinh, String CMND, String maLop) {
         this.MSSV = MSSV;
-        this.STT = STT;
         HoTen = hoTen;
         GioiTinh = gioiTinh;
         this.CMND = CMND;
@@ -26,14 +24,6 @@ public class SinhVien {
 
     public void setMSSV(String MSSV) {
         this.MSSV = MSSV;
-    }
-
-    public int getSTT() {
-        return STT;
-    }
-
-    public void setSTT(int STT) {
-        this.STT = STT;
     }
 
     public String getHoTen() {
@@ -70,7 +60,7 @@ public class SinhVien {
 
     @Override
     public String toString() {
-        return STT + MSSV + "," + HoTen + ','+ GioiTinh +
+        return MSSV + "," + HoTen + ','+ GioiTinh +
                 "," + CMND + ',' + MaLop;
     }
 }

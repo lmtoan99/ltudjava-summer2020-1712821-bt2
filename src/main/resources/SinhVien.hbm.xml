@@ -7,9 +7,6 @@
         <id name="MSSV" type="string">
             <column length="7" name="MSSV"/>
         </id>
-        <property name="STT" type="int">
-            <column name="STT"/>
-        </property>
         <property name="HoTen" type="string">
             <column length="45" name="HoTen" not-null="true"/>
         </property>

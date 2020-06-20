@@ -61,4 +61,52 @@ public class TkbSVDAO {
         }
         return tkb;
     }
+    
+    public static List<TkbSV> layDanhSachTkbTheoSV(String mssv){
+        List<TkbSV> tkb = null;
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "select tkb from TkbSV tkb where MSSV=:mssv";
+            Query query = session.createQuery(hql);
+            query.setParameter("mssv", mssv);
+            tkb = query.list();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return tkb;
+    }
+    
+    public static void huyHocPhanSinhVien(TkbSV hocphan){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(hocphan);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    public static TkbSV timHocPhanSinhVien(String mssv,String malop,String mamon){
+        List<TkbSV> tkb = null;
+        Session session = HibernateUtil.getSessionFactory()
+                .openSession();
+        try {
+            String hql = "select tkb from TkbSV tkb where MSSV=:mssv "
+                    + "and MaLop=:malop and MaMon=:mamon";
+            Query query = session.createQuery(hql);
+            query.setParameter("mssv", mssv);
+            query.setParameter("malop", malop);
+            query.setParameter("mamon", mamon);
+            tkb = query.list();
+        } catch (HibernateException ex) {
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        if (tkb.size()==0){
+            return null;
+        }
+        return tkb.get(0);
+    }
 }
