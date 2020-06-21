@@ -2,7 +2,6 @@ CREATE DATABASE IF NOT EXISTS quanlysinhvien;
 use quanlysinhvien;
 
 CREATE TABLE `sinhvien` (
-  `STT` int DEFAULT NULL,
   `MSSV` varchar(7) NOT NULL,
   `HoTen` varchar(45) NOT NULL,
   `GioiTinh` int DEFAULT NULL,
@@ -32,7 +31,6 @@ CREATE TABLE `monhoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tkblop` (
-  `STT` int NOT NULL,
   `MaMon` varchar(10) NOT NULL,
   `MaLop` varchar(5) NOT NULL,
   `PhongHoc` varchar(4) NOT NULL,
@@ -42,16 +40,36 @@ CREATE TABLE `tkblop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tkbsv` (
-  `STT` int NOT NULL,
   `MSSV` varchar(7) NOT NULL,
   `MaLop` varchar(5) NOT NULL,
   `MaMon` varchar(10) NOT NULL,
-  `DiemGK` float unsigned DEFAULT NULL,
-  `DiemCK` float unsigned DEFAULT NULL,
-  `DiemKhac` float unsigned DEFAULT NULL,
-  `DiemTong` float unsigned DEFAULT NULL,
+  `DiemGK` float DEFAULT NULL,
+  `DiemCK` float DEFAULT NULL,
+  `DiemKhac` float DEFAULT NULL,
+  `DiemTong` float DEFAULT NULL,
   PRIMARY KEY (`MSSV`,`MaLop`,`MaMon`),
   KEY `fk_tkbsv_tkblop_idx` (`MaLop`,`MaMon`) /*!80000 INVISIBLE */,
+  KEY `fk_donphuckhao_tkbsv_idx` (`MSSV`,`MaMon`) /*!80000 INVISIBLE */,
   CONSTRAINT `fk_tkbsv_sv` FOREIGN KEY (`MSSV`) REFERENCES `sinhvien` (`MSSV`),
   CONSTRAINT `fk_tkbsv_tkblop` FOREIGN KEY (`MaLop`, `MaMon`) REFERENCES `tkblop` (`MaLop`, `MaMon`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `dotphuckhao` (
+  `ngayBatDau` bigint NOT NULL,
+  `ngayKetThuc` bigint NOT NULL,
+  PRIMARY KEY (`ngayBatDau`,`ngayKetThuc`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `donphuckhao` (
+  `MSSV` varchar(7) NOT NULL,
+  `MaMon` varchar(10) NOT NULL,
+  `CotDiem` int NOT NULL,
+  `DiemMongMuon` float DEFAULT NULL,
+  `LyDo` varchar(45) DEFAULT NULL,
+  `TrangThai` int DEFAULT NULL,
+  PRIMARY KEY (`MSSV`,`MaMon`,`CotDiem`),
+  KEY `fk_donphuckhao_tkbsv_idx` (`MSSV`,`MaMon`) /*!80000 INVISIBLE */,
+  CONSTRAINT `fk_donphuckhao_tkbsv` FOREIGN KEY (`MSSV`,`MaMon`) REFERENCES `tkbsv` (`MSSV`,`MaMon`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+

@@ -12,9 +12,6 @@
                 <column name="MaLop" length="5"/>
             </key-property>
         </composite-id>
-        <property name="STT" type="int">
-            <column name="STT"/>
-        </property>
         <property name="PhongHoc" type="string">
             <column name="PhongHoc" length="4"/>
         </property>

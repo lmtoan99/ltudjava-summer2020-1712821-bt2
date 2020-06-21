@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
@@ -1494,6 +1495,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
             }
             if (line == null){
                 file = null;
+                JOptionPane.showMessageDialog(null,"Import danh sách lớp thành công.");
                 return;
             }
             String[] arr = line.split(",");
@@ -1503,7 +1505,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 SinhVien sv = new SinhVien(arr[0],arr[1],arr[2].equals("Nam")?1:0,arr[3],lop);
                 System.out.println(sv.toString());
                 SinhVienDAO.luuSinhVien(sv);
-                UserSV user = new UserSV(arr[1],arr[1]);
+                UserSV user = new UserSV(arr[0],arr[0]);
                 UserSVDAO.luuUserSV(user);
             }
         }
@@ -1571,18 +1573,17 @@ public class MenuGiaoVu extends javax.swing.JFrame {
                 lop = arr[0];
                 listSV = SinhVienDAO.layDanhSachSinhVienTheoLop(lop);
             }else{
-                MonHoc mon = new MonHoc(arr[1],arr[2]);
+                MonHoc mon = new MonHoc(arr[0],arr[1]);
                 MonHocDAO.luuMonHoc(mon);
               
-                TkbLop tkb = new TkbLop(Integer.valueOf(arr[0]),
-                arr[1],lop,arr[3]);
+                TkbLop tkb = new TkbLop(arr[0],lop,arr[2]);
                 System.out.println(tkb.toString());
                 TkbLopDAO.luuTkbLop(tkb);
                 final String temp_lop = lop;
                 listSV.forEach(sv -> {
                     TkbSV tkb_sv = new TkbSV();
                     tkb_sv.setMSSV(sv.getMSSV());
-                    tkb_sv.setMaMon(arr[1]);
+                    tkb_sv.setMaMon(arr[0]);
                     tkb_sv.setMaLop(temp_lop);
                     TkbSVDAO.luuTkbSv(tkb_sv);
                 });
@@ -1615,7 +1616,7 @@ public class MenuGiaoVu extends javax.swing.JFrame {
         model.setNumRows(0);
         tkbLop.forEach(tkb -> {
             MonHoc mh = MonHocDAO.layMonHoc(tkb.getMaMon());
-            model.addRow(new Object[]{tkb.getSTT(), tkb.getMaMon(), mh.getTenMon()
+            model.addRow(new Object[]{tkb.getMaMon(), mh.getTenMon()
                     ,tkb.getPhongHoc()});
         });
     }//GEN-LAST:event_xemTkbBtnActionPerformed
@@ -1775,10 +1776,13 @@ public class MenuGiaoVu extends javax.swing.JFrame {
 
     private void thayDoiTrangThaiPhucKhaoSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thayDoiTrangThaiPhucKhaoSubmitActionPerformed
         int idx = danhSachPhucKhaoTable.getSelectedRow();
+        if (idx < 0){
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) danhSachPhucKhaoTable.getModel();
-        Vector item = model.getDataVector().elementAt(idx);
+        Vector item = (Vector)model.getDataVector().elementAt(idx);
         item.set(6, statusComboBox.getSelectedItem());
-        model.setColumnIdentifiers(item);
+        model.setValueAt((String)statusComboBox.getSelectedItem(),idx,6);
         DonPhucKhao don = new DonPhucKhao();
         don.setMssv((String)item.get(0));
         don.setMaMon((String)item.get(2));
@@ -1801,6 +1805,10 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void addSV_SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSV_SubmitActionPerformed
+        if ((addSV_mssv.getText()).equals("")|| (addSV_hoten.getText()).equals("") || (addSV_cmnd.getText()).equals("")){
+            JOptionPane.showMessageDialog(null,"Các trường không được để trống");
+            return;
+        }
         SinhVien sv = new SinhVien();
         sv.setMSSV(addSV_mssv.getText());
         sv.setHoTen(addSV_hoten.getText());
@@ -1824,6 +1832,10 @@ public class MenuGiaoVu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void dkiHocPhanSv_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dkiHocPhanSv_submitActionPerformed
+        if ((dkiHocPhanSv_MSSV.getText()).equals("")){
+            JOptionPane.showMessageDialog(null,"Mã số sinh viên không được để trống");
+            return;
+        }
         TkbSV tkb = new TkbSV();
         String lopmon = (String)dkiHocPhanSv_MonLop.getSelectedItem();
         String[] split = lopmon.split("-");

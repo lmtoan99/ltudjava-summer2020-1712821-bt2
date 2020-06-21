@@ -3,7 +3,6 @@ package pojo;
 import java.io.Serializable;
 
 public class TkbLop implements Serializable {
-    private int STT;
     private String MaLop;
     private String MaMon;
     private String PhongHoc;
@@ -16,19 +15,10 @@ public class TkbLop implements Serializable {
         this.MaMon = MaMon;
     }
 
-    public TkbLop(int STT, String maMon, String maLop, String phongHoc) {
-        this.STT = STT;
+    public TkbLop(String maMon, String maLop, String phongHoc) {
         MaLop = maLop;
         MaMon = maMon;
         PhongHoc = phongHoc;
-    }
-
-    public int getSTT() {
-        return STT;
-    }
-
-    public void setSTT(int STT) {
-        this.STT = STT;
     }
 
     public String getMaLop() {
@@ -58,8 +48,7 @@ public class TkbLop implements Serializable {
     @Override
     public String toString() {
         return "TkbLop{" +
-                "STT=" + STT +
-                ", MaLop='" + MaLop + '\'' +
+                "MaLop='" + MaLop + '\'' +
                 ", MaMon='" + MaMon + '\'' +
                 ", PhongHoc='" + PhongHoc + '\'' +
                 '}';

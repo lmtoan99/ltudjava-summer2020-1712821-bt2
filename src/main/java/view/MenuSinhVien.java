@@ -456,6 +456,7 @@ public class MenuSinhVien extends javax.swing.JFrame {
         }
         
         List<TkbSV> dsMon = TkbSVDAO.layDanhSachTkbTheoSV(Username);
+        phucKhao_dsMon.removeAllItems();
         dsMon.forEach(mon->{
             MonHoc mh = MonHocDAO.layMonHoc(mon.getMaMon());
             phucKhao_dsMon.addItem(mh.getMaMon() + "-" + mh.getTenMon());
